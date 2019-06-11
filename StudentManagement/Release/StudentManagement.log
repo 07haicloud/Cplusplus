@@ -1,0 +1,25 @@
+﻿  main.cpp
+main.cpp(39): error C2872: 'count': ambiguous symbol
+  main.cpp(26): note: could be 'int count'
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xutility(3318): note: or       'iterator_traits<_Iter>::difference_type std::count(_InIt,_InIt,const _Ty &)'
+main.cpp(42): error C2872: 'count': ambiguous symbol
+  main.cpp(26): note: could be 'int count'
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xutility(3318): note: or       'iterator_traits<_Iter>::difference_type std::count(_InIt,_InIt,const _Ty &)'
+main.cpp(45): error C2872: 'count': ambiguous symbol
+  main.cpp(26): note: could be 'int count'
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xutility(3318): note: or       'iterator_traits<_Iter>::difference_type std::count(_InIt,_InIt,const _Ty &)'
+main.cpp(47): error C2872: 'count': ambiguous symbol
+  main.cpp(26): note: could be 'int count'
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xutility(3318): note: or       'iterator_traits<_Iter>::difference_type std::count(_InIt,_InIt,const _Ty &)'
+main.cpp(50): error C2872: 'count': ambiguous symbol
+  main.cpp(26): note: could be 'int count'
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xutility(3318): note: or       'iterator_traits<_Iter>::difference_type std::count(_InIt,_InIt,const _Ty &)'
+main.cpp(50): error C2065: 'i': undeclared identifier
+main.cpp(53): error C2872: 'count': ambiguous symbol
+  main.cpp(26): note: could be 'int count'
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xutility(3318): note: or       'iterator_traits<_Iter>::difference_type std::count(_InIt,_InIt,const _Ty &)'
+main.cpp(55): error C2872: 'count': ambiguous symbol
+  main.cpp(26): note: could be 'int count'
+  C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xutility(3318): note: or       'iterator_traits<_Iter>::difference_type std::count(_InIt,_InIt,const _Ty &)'
+main.cpp(69): error C2562: 'main': 'void' function returning a value
+  main.cpp(59): note: see declaration of 'main'
