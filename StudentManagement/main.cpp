@@ -12,7 +12,7 @@ struct Student {
 };
 
 
-//DispalyDefault
+//Dispaly Default Menu
 void DisplayDefault(int &choose) {
 	cout << "----------------MENU-----------" << endl;
 	cout << "\t1. Input" << endl;
@@ -24,7 +24,7 @@ void DisplayDefault(int &choose) {
 	cout << "Choose: ";
 	cin >> choose;
 }
-//Input Students And Check Funtions
+//Input Students And Check Varible Funtions
 
 void CheckNumberStudents(int &numStudents) {
 	while (numStudents <= 0) {
@@ -32,6 +32,7 @@ void CheckNumberStudents(int &numStudents) {
 		cin >> numStudents;
 	}
 }
+
 void CheckLitmitScore(Student &newStudent) {
 	while (newStudent.score<0 || newStudent.score>10) {
 		cout << "Please Enter Score of student again: ";
@@ -106,13 +107,33 @@ void SaveFile(string FileName, Student * students, int index) {
 			fileOut << tempName<<" ";
 			fileOut << students[i].score<<endl;
 		}
-		cout << "Save susscess to file";
+		cout << "Save susscess to file" << endl;
 		fileOut.close();
 	}
 	else {
 		cout << "Error";
 	}
 	
+}
+void LoadFromFile(string FileName) {
+	ifstream fileIn;
+	fileIn.open(FileName, ios_base::in);
+	int CountStudentFromList = 0;
+	fileIn >> CountStudentFromList;
+	cout << left << setw(10) << "ID";
+	cout << left << setw(30) << "Name";
+	cout << left << setw(10) << "Score" << endl;
+	Student student;
+	for (int i = 0; i < CountStudentFromList; i++) {
+		fileIn >> student.id;
+		fileIn >> student.name;
+		student.name = ReplaceString(student.name, '_', ' ');
+		fileIn >> student.score;
+		cout << left << setw(10) << student.id;
+		cout << left << setw(30) << student.name;
+		cout << left << setw(10) << student.score << endl;
+	}
+	fileIn.close();
 }
 void main()
 {
@@ -140,8 +161,8 @@ void main()
 			DisplayDefault(choose);
 			break;
 		case 4: //Load from file
-
-			DisplayList(students, index);
+			LoadFromFile(fileName);
+			DisplayDefault(choose);
 			break;
 		case 0:
 			exit = 1;
