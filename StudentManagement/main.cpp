@@ -48,7 +48,7 @@ bool CheckDuplicatedID(int index, Student newStudent, Student *students) {
 	}
 	return false;
 }
-void input(Student *students, int &index, int &numStudents) {
+void Input(Student *students, int &index, int &numStudents) {
 	cout << "Enter number of students: ";
 	cin >> numStudents;
 	numStudents += index;
@@ -75,9 +75,8 @@ void input(Student *students, int &index, int &numStudents) {
 	}
 }
 
-// Display List
+// Display List Students
 void DisplayList(Student *students, int &index) {
-	//cout << index;
 	cout << left << setw(10) << "ID";
 	cout << left << setw(30) << "Name";
 	cout << left << setw(10) << "Score"<<endl;
@@ -87,6 +86,8 @@ void DisplayList(Student *students, int &index) {
 		cout << left << setw(10) << students[i].score<<endl;
 	}
 }
+
+// Save to File and Load from File
 string ReplaceString(string content ,char after, char before) {
 	for (int i = 0; i < content.size(); i++) {
 		if (content.at(i) == after) {
@@ -145,11 +146,10 @@ void main()
 	string fileName = "ListStudent.txt";
 
 
-	//static int index = 0;
 	while (1) {
 		switch (choose) {
-		case 1:	//input
-			input(students,index, numStudents);
+		case 1:
+			Input(students,index, numStudents);
 			DisplayDefault(choose);
 			break;
 		case 2:
