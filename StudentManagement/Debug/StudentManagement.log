@@ -1,0 +1,5 @@
+﻿  main.cpp
+d:\cplusplus\studentmanagement\studentmanagement\main.cpp(59): warning C4129: 'i': unrecognized character escape sequence
+d:\cplusplus\studentmanagement\studentmanagement\main.cpp(90): warning C4018: '<': signed/unsigned mismatch
+  StudentManagement.vcxproj -> D:\Cplusplus\StudentManagement\StudentManagement\Debug\StudentManagement.exe
+  StudentManagement.vcxproj -> D:\Cplusplus\StudentManagement\StudentManagement\Debug\StudentManagement.pdb (Full PDB)
