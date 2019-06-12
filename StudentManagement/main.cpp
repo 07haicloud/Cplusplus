@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-#include <iomanip> 
+#include <iomanip>
+#include <fstream>
 using namespace std;
 
 // Define struct and assign array  for students 
@@ -9,11 +10,10 @@ struct Student {
 	string name;
 	float score;
 };
-Student *students = new Student[100];
+
 
 //DispalyDefault
-int choose = -1;
-void DisplayDefault() {
+void DisplayDefault(int &choose) {
 	cout << "----------------MENU-----------" << endl;
 	cout << "\t1. Input" << endl;
 	cout << "\t2. Display" << endl;
@@ -24,11 +24,9 @@ void DisplayDefault() {
 	cout << "Choose: ";
 	cin >> choose;
 }
-static int index = 0;
+//Input Students And Check Funtions
 
-//input
-int numStudents = 0;
-void CheckNumberStudents() {
+void CheckNumberStudents(int &numStudents) {
 	while (numStudents <= 0) {
 		cout << "Please Enter Number Of Students again: ";
 		cin >> numStudents;
@@ -41,7 +39,7 @@ void CheckLitmitScore(Student &newStudent) {
 	}
 }
 
-bool CheckDuplicatedID(int index, Student newStudent) {
+bool CheckDuplicatedID(int index, Student newStudent, Student *students) {
 	for (int i = 0; i < index; i++) {
 		if (newStudent.id == students[i].id) {
 			return true;
@@ -49,25 +47,25 @@ bool CheckDuplicatedID(int index, Student newStudent) {
 	}
 	return false;
 }
-void input(int &index) {
+void input(Student *students, int &index, int &numStudents) {
 	cout << "Enter number of students: ";
 	cin >> numStudents;
 	numStudents += index;
-	CheckNumberStudents();
+	CheckNumberStudents(numStudents);
 	int i = index;
 	Student newStudent;
 	for (; i<numStudents; i++) {
 		cout << "\nNo." << i + 1 << endl;
-		cout << "\id: ";
+		cout <<left<<setw(10)<< "\id: ";
 		cin >> newStudent.id;
-		while (CheckDuplicatedID(index, newStudent)) {
+		while (CheckDuplicatedID(index, newStudent, students)) {
 			cout << "Duplicated! Please Enter ID Of Students Again: ";
 			cin >> newStudent.id;
 		}
-		cout << "name: ";
+		cout << left << setw(10)<< "name: ";
 		cin.ignore();
 		getline(cin, newStudent.name);
-		cout << "score: ";
+		cout << left << setw(10) << "score: ";
 		cin >> newStudent.score;
 		
 		CheckLitmitScore(newStudent);
@@ -77,7 +75,7 @@ void input(int &index) {
 }
 
 // Display List
-void DisplayList(int &index) {
+void DisplayList(Student *students, int &index) {
 	//cout << index;
 	cout << left << setw(10) << "ID";
 	cout << left << setw(30) << "Name";
@@ -88,28 +86,71 @@ void DisplayList(int &index) {
 		cout << left << setw(10) << students[i].score<<endl;
 	}
 }
+string ReplaceString(string content ,char after, char before) {
+	for (int i = 0; i < content.size(); i++) {
+		if (content.at(i) == after) {
+			content.at(i) = before;
+		}
+	}
+	return content;
+}
+
+void SaveFile(string FileName, Student * students, int index) {
+	ofstream fileOut;
+	fileOut.open(FileName, std::ios_base::out);
+	if (fileOut.is_open()) {
+		fileOut << index << endl;
+		for (int i = 0; i < index; i++) {
+			fileOut << students[i].id<<" ";
+			string tempName = ReplaceString(students[i].name, ' ', '_');
+			fileOut << tempName<<" ";
+			fileOut << students[i].score<<endl;
+		}
+		cout << "Save susscess to file";
+		fileOut.close();
+	}
+	else {
+		cout << "Error";
+	}
+	
+}
 void main()
 {
+	int numStudents = 0;
+	int choose = -1;
+	Student *students = new Student[100];
 	int index =0;
 	bool exit = 0;
+	string fileName = "ListStudent.txt";
+
+
+	//static int index = 0;
 	while (1) {
 		switch (choose) {
 		case 1:	//input
-			input(index);
-			DisplayDefault();
+			input(students,index, numStudents);
+			DisplayDefault(choose);
 			break;
 		case 2:
-			DisplayList(index);
-			DisplayDefault();
+			DisplayList(students, index);
+			DisplayDefault(choose);
+			break;
+		case 3:// Save file
+			SaveFile(fileName, students, index);
+			DisplayDefault(choose);
+			break;
+		case 4: //Load from file
+
+			DisplayList(students, index);
 			break;
 		case 0:
 			exit = 1;
 			break;
 		default:
-			DisplayDefault();
-
+			DisplayDefault(choose);
 			break;
 		}
+		// Check Choose Case 0
 		if (exit) {
 			break;
 		}
