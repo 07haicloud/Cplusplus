@@ -1,7 +1,0 @@
-6
-1 1 1
-2 2 2
-3 3 3
-4 2 3
-5 Nguyen_Van_A 9
-6 Nguyen_Van_B 4
