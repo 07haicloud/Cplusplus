@@ -8,6 +8,7 @@ DengueVirus::DengueVirus()
 {
 	DoBorn();
 	InitResistance();
+	cout << "Resistance: " << this->getM_resistance() << endl;
 }
 
 DengueVirus::~DengueVirus()
@@ -22,7 +23,7 @@ DengueVirus::DengueVirus(const DengueVirus * dengue): Virus()
 }
 
 void DengueVirus::DoBorn() {
-	cout << "Create a  Dengue virus\n";
+	cout << "Create a  Dengue virus. ";
 	this->LoadADNInformation();
 	srand(time(0));
 	int random = rand() % 3 + 1;
@@ -45,17 +46,21 @@ void DengueVirus::DoDie()
 
 list<Virus*> DengueVirus::DoClone()
 {
-	cout << "Do Clone a Dengue Virus\n";
+	
 	DengueVirus *a = new DengueVirus(this);
 	list<Virus*> temp;
 	temp.push_back(a);
+	cout << "Dengue Virus"<<this->getM_resistance()<<endl;
 	temp.push_back(a);
+	cout << "Dengue Virus" << this->getM_resistance() << endl;
 	temp.push_back(a);
+	cout << "Dengue Virus" << this->getM_resistance() << endl;
 	return temp;
 }
 
 int DengueVirus::InitResistance()
 {
+	srand(time(0));
 	if (this->m_protein[4] == 'NS3') {
 		int resistance = rand() % (10 - 1 + 1) + 1;
 		this->setM_resistance(resistance);

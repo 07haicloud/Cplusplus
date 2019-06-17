@@ -7,6 +7,7 @@ FluVirus::FluVirus()
 {
 	DoBorn();
 	InitResistance();
+	cout << "Resistance: " << this->getM_resistance() << endl;
 }
 
 FluVirus::~FluVirus()
@@ -19,7 +20,7 @@ FluVirus::FluVirus(const FluVirus * fluVirus) :Virus() {
 }
 
 void FluVirus::DoBorn() {
-	cout << "Create a  Flu virus\n";
+	cout << "Create a  Flu virus. ";
 	this->LoadADNInformation();
 	srand(time(0));
 	int random = rand() % 2 + 1;
@@ -41,15 +42,17 @@ void FluVirus::DoDie()
 
 list<Virus*> FluVirus::DoClone()
 {
-	cout << "DoClone Flue Virus\n";
 	FluVirus *a = new FluVirus(this);
 	list<Virus*> temp;
 	temp.push_back(a);
+	cout << "Flu virus: " << this->getM_resistance() << endl;
 	temp.push_back(a);
+	cout << "Flu virus: " << this->getM_resistance() << endl;
 	return temp;
 }
 
 int FluVirus::InitResistance() {
+	srand(time(NULL));
 	if (this->m_color == 0x0000ff) {
 		//random 10-20 for Red Flu
 		int resistance = rand() % (20 - 10 + 1) + 10;
