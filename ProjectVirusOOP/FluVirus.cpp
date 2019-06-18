@@ -2,6 +2,7 @@
 #include<iostream>
 #include <stdlib.h>
 #include <time.h> 
+#include<iomanip>
 
 FluVirus::FluVirus()
 {
@@ -15,12 +16,12 @@ FluVirus::~FluVirus()
 
 }
 
-FluVirus::FluVirus(const FluVirus * fluVirus) :Virus() {
-	this->m_color = fluVirus->m_color;
+FluVirus::FluVirus(const FluVirus & fluVirus) :Virus(fluVirus) {
+	this->m_color = fluVirus.m_color;
 }
 
 void FluVirus::DoBorn() {
-	cout << "Create a  Flu virus. ";
+	cout << "\t\t" << left << setw(30) << "Create a  Flu virus. ";
 	this->LoadADNInformation();
 	srand(time(0));
 	int random = rand() % 2 + 1;
@@ -42,12 +43,12 @@ void FluVirus::DoDie()
 
 list<Virus*> FluVirus::DoClone()
 {
-	FluVirus *a = new FluVirus(this);
+	FluVirus *a = new FluVirus(*this);
 	list<Virus*> temp;
 	temp.push_back(a);
-	cout << "Flu virus: " << this->getM_resistance() << endl;
+	cout << "\t\t" << left << setw(20) << "Flu virus. " << left << setw(20) << "Resistance:" << this->getM_resistance() << endl;	
 	temp.push_back(a);
-	cout << "Flu virus: " << this->getM_resistance() << endl;
+	cout << "\t\t" << left << setw(20) << "Flu virus. " << left << setw(20) << "Resistance:" << this->getM_resistance() << endl;
 	return temp;
 }
 

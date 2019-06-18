@@ -8,7 +8,7 @@ private:
 public:
 	FluVirus();
 	~FluVirus();
-	FluVirus(const FluVirus * fluVirus);
+	FluVirus(const FluVirus &fluVirus);
 	void DoBorn() override;
 	void DoDie() override;
 	list<Virus*> DoClone() override;

@@ -7,7 +7,7 @@ private:
 public:
 	DengueVirus();
 	~DengueVirus();
-	DengueVirus(const DengueVirus * dengue);
+	DengueVirus(const DengueVirus & dengue);
 
 
 

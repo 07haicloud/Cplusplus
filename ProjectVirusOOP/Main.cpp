@@ -9,7 +9,7 @@ void main() {
 	srand(time(NULL));
 	while (p.getM_state() == 1)
 	{
-		cout<<"Take Medicine (0 = NO, 1 = YES)";
+		cout<<"Take Medicine (0 = NO, 1 = YES): ";
 		cin >> t;
 		if (t == 1)
 		{
@@ -17,7 +17,7 @@ void main() {
 			int max = 5;
 			srand(time(NULL));
 			int medicine_resistance = min + (rand() % (int)(max - min + 1));
-			p.TakeMedicine(medicine_resistance);
+			p.TakeMedicine(1);
 		}
 	}
 	system("pause");

@@ -2,6 +2,7 @@
 #include<iostream>
 #include <stdlib.h>
 #include <time.h> 
+#include <iomanip>
 
 
 DengueVirus::DengueVirus()
@@ -16,14 +17,14 @@ DengueVirus::~DengueVirus()
 	DoDie();
 }
 
-DengueVirus::DengueVirus(const DengueVirus * dengue): Virus()
+DengueVirus::DengueVirus(const DengueVirus & dengue): Virus(dengue)
 {
-	this->m_protein[4] = dengue->m_protein[4];
+	m_protein[4] = dengue.m_protein[4];
 
 }
 
 void DengueVirus::DoBorn() {
-	cout << "Create a  Dengue virus. ";
+	cout <<"\t\t"<<left<<setw(30)<< "Create a  Dengue virus. ";
 	this->LoadADNInformation();
 	srand(time(0));
 	int random = rand() % 3 + 1;
@@ -47,14 +48,14 @@ void DengueVirus::DoDie()
 list<Virus*> DengueVirus::DoClone()
 {
 	
-	DengueVirus *a = new DengueVirus(this);
+	DengueVirus *a = new DengueVirus(*this);
 	list<Virus*> temp;
 	temp.push_back(a);
-	cout << "Dengue Virus"<<this->getM_resistance()<<endl;
+	cout << "\t\t" << left<<setw(20)<<"Dengue Virus.  "<< left << setw(20)<<"Resistance:"<<this->getM_resistance()<<endl;
 	temp.push_back(a);
-	cout << "Dengue Virus" << this->getM_resistance() << endl;
+	cout << "\t\t" << left << setw(20) << "Dengue Virus. " << left << setw(20) << "Resistance:" << this->getM_resistance() << endl;
 	temp.push_back(a);
-	cout << "Dengue Virus" << this->getM_resistance() << endl;
+	cout << "\t\t" << left << setw(20) << "Dengue Virus. " << left << setw(20) << "Resistance:" << this->getM_resistance() << endl;
 	return temp;
 }
 
