@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CADE4148-632F-4840-A191-338C69142112}</ProjectGuid>
+    <ProjectGuid>{7A121615-530B-44BD-B56A-6E342B56A885}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>StudentManagement</RootNamespace>
+    <RootNamespace>ProjectVirusOOP</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -71,6 +71,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\ToolDetectLeak\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -93,6 +94,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\ToolDetectLeak\lib\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -146,7 +148,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClInclude Include="DengueVirus.h" />
+    <ClInclude Include="FluVirus.h" />
+    <ClInclude Include="Patient.h" />
+    <ClInclude Include="Virus.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DengueVirus.cpp" />
+    <ClCompile Include="FluVirus.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Patient.cpp" />
+    <ClCompile Include="Virus.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
