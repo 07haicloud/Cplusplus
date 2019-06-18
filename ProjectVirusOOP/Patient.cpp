@@ -41,42 +41,25 @@ void Patient::DoStart()
 
 void Patient::TakeMedicine(int medicine_resistance)
 {
-	int sumResistance = 0;
-	list <Virus*> ::iterator it, it2;
-	list<Virus*> new_virusList ;
-	list<Virus*> new_virusList1 ;
-	cout << "Take Medicine: "<<medicine_resistance<<endl;
-	new_virusList1.clear();
-	new_virusList.clear();
-
-	//
-	for (it = m_virusList.begin(); it != m_virusList.end(); it++ ) {
-		cout<<"medicine : "<<(*it)->ReduceResistance(medicine_resistance)<<endl;
-		if ((*it)->ReduceResistance(medicine_resistance) > 0) {
-			new_virusList1 = (*it)->DoClone();
-			for (it2 = new_virusList1.begin(); it2 != new_virusList1.end(); it2++) {
-				new_virusList.push_back(*it2);
+	list <Virus*> ::iterator k;
+	for (list <Virus*> ::iterator i = this->m_virusList.begin(); i != this->m_virusList.end();) {
+		int ResistanceLate = (*i)->ReduceResistance(medicine_resistance);
+		if (ResistanceLate > 0) {
+			list <Virus*> List_Clone = (*i)->DoClone();
+			for (list <Virus*>::iterator j = List_Clone.begin(); j != List_Clone.end(); j++) {
+				this->m_virusList.push_back(*j);
 			}
-		}
-	}
-	if (new_virusList.size() > 0) {
-		m_virusList.clear();
-		for (it2 = new_virusList.begin(); it2 != new_virusList.end(); it2++) {
-			m_virusList.push_back(*it2);
-			sumResistance += (*it2)->getM_resistance();
-		}
-		if (sumResistance > this->m_resistance) {
-			cout << "Patient is Dead by virus"<<endl;
-			this->setM_state(0);
+			i++;
 		}
 		else {
-			cout << "Resistance's Patient: " << this->m_resistance<<endl;
-			this->setM_state(0);
+			k = i;
+			k++;
+			this->m_virusList.erase(i);
+			i = k;
 		}
 	}
-	else {
-		cout << "All Virus is Dead"<<endl;
-		this->setM_state(0);
+	for (list <Virus*> ::iterator i = this->m_virusList.begin(); i != this->m_virusList.end(); i++) {
+		cout<<"resistance: "<<(*i)->getM_resistance()<<endl;
 	}
 }
 
