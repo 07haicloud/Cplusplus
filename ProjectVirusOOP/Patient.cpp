@@ -14,6 +14,7 @@ Patient::Patient()
 
 Patient::~Patient()
 {
+	DoDie();
 }
 
 void Patient::InitResistance()
@@ -50,34 +51,35 @@ void Patient::TakeMedicine(int medicine_resistance)
 		(*i)->ReduceResistance(medicine_resistance);
 		
 		if ((*i)->getM_resistance() > 0) {
+			cout << "\t\tVirus still alive. Ressistance: \t" << (*i)->getM_resistance() << endl;
 			list <Virus*> List_Clone;
 			List_Clone.clear();
 			List_Clone = (*i)->DoClone();
+			SizeListVirus++;
 			
 			for (list <Virus*>::iterator j = List_Clone.begin(); j != List_Clone.end(); j++) {
 				this->m_virusList.push_front(*j);
 				SizeListVirus++;
-				cout << "-Ressistance:" << (*j)->getM_resistance() << endl;
+				//cout << "-Ressistance:" << (*j)->getM_resistance() << endl;
 			}
-			cout << endl << SizeListVirus << " " << endl;
 			i++;
 		}
 		else {
-			SizeListVirus++;
 			k = i;
-			k++;
-			this->m_virusList.erase(i);
-			i = k;
+			i++;
+			delete *k;
+			this->m_virusList.erase(k);
+			
 		}
 	}
-	cout << "size1 : " << SizeListVirus << endl;
+	cout << "Total virus : " << SizeListVirus << endl;
 	SizeListVirus = 0;
 
 	for (list <Virus*> ::iterator i = this->m_virusList.begin(); i != this->m_virusList.end(); i++) {
-		cout<<"\t\t-Resistance: "<<(*i)->getM_resistance()<<endl;
-		SumResistanceVirus += (*i)->getM_resistance();
 		SizeListVirus++;
-		cout << SizeListVirus << " ";
+		//cout << SizeListVirus;
+		SumResistanceVirus += (*i)->getM_resistance();
+		//cout << SizeListVirus << " ";
 	}
 	cout << "size2 : " << SizeListVirus << endl;
 
@@ -99,7 +101,10 @@ void Patient::TakeMedicine(int medicine_resistance)
 
 void Patient::DoDie()
 {
-	delete this;
+	for (auto i = m_virusList.begin(); i != m_virusList.end(); i++) {
+		delete *i;
+	}
+	m_virusList.clear();
 }
 
 

@@ -9,7 +9,8 @@ DengueVirus::DengueVirus()
 {
 	DoBorn();
 	InitResistance();
-	cout << "Resistance: " << this->getM_resistance() << endl;
+	cout << "Resistance: " << this->getM_resistance();
+	cout << "\tm_protein" << this->m_protein << endl;
 }
 
 DengueVirus::~DengueVirus()
@@ -19,7 +20,7 @@ DengueVirus::~DengueVirus()
 
 DengueVirus::DengueVirus(const DengueVirus & dengue): Virus(dengue)
 {
-	m_protein[4] = dengue.m_protein[4];
+	m_protein = dengue.m_protein;
 
 }
 
@@ -29,32 +30,31 @@ void DengueVirus::DoBorn() {
 	srand(time(0));
 	int random = rand() % 3 + 1;
 	if (random == 1) {
-		this->m_protein[4] = 'NS3';
+		this->m_protein = "NS3";
 	}
 	else if (random == 2) {
-		this->m_protein[4] = 'NS5';
+		this->m_protein = "NS5";
 	}
 	else {
-		this->m_protein[4] = 'E)';
+		this->m_protein = "E";
 	}
 }
 
 void DengueVirus::DoDie()
 {
 	cout << "Killer";
-	delete this;
+	m_protein = "";
 }
 
 list<Virus*> DengueVirus::DoClone()
 {
 	
 	DengueVirus *a = new DengueVirus(*this);
+	DengueVirus *b = new DengueVirus(*this);
 	list<Virus*> temp;
 	temp.push_back(a);
 	cout << "\t\t" << left<<setw(20)<<"Dengue Virus.  "<< left << setw(20)<<"Resistance:"<<this->getM_resistance()<<endl;
-	temp.push_back(a);
-	cout << "\t\t" << left << setw(20) << "Dengue Virus. " << left << setw(20) << "Resistance:" << this->getM_resistance() << endl;
-	temp.push_back(a);
+	temp.push_back(b);
 	cout << "\t\t" << left << setw(20) << "Dengue Virus. " << left << setw(20) << "Resistance:" << this->getM_resistance() << endl;
 	return temp;
 }
@@ -62,11 +62,11 @@ list<Virus*> DengueVirus::DoClone()
 int DengueVirus::InitResistance()
 {
 	srand(time(0));
-	if (this->m_protein[4] == 'NS3') {
+	if (this->m_protein == "NS3") {
 		int resistance = rand() % (10 - 1 + 1) + 1;
 		this->setM_resistance(resistance);
 	}
-	else if (this->m_protein[4] == 'NS5') {
+	else if (this->m_protein == "NS5") {
 		int resistance = rand() % (20 - 11 + 1) + 11;
 		this->setM_resistance(resistance);
 	}

@@ -17,7 +17,7 @@ void main() {
 			int max = 5;
 			srand(time(NULL));
 			int medicine_resistance = min + (rand() % (int)(max - min + 1));
-			p.TakeMedicine(1);
+			p.TakeMedicine(medicine_resistance);
 		}
 	}
 	system("pause");

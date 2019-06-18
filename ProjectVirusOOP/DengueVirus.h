@@ -3,7 +3,7 @@
 class DengueVirus :	public Virus
 {
 private:
-	char m_protein[4];
+	string m_protein;
 public:
 	DengueVirus();
 	~DengueVirus();

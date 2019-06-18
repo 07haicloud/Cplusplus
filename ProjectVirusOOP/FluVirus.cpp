@@ -8,12 +8,13 @@ FluVirus::FluVirus()
 {
 	DoBorn();
 	InitResistance();
-	cout << "Resistance: " << this->getM_resistance() << endl;
+	cout << "Resistance: " << this->getM_resistance();
+	cout << "\tcolor: " << this->m_color<<endl;
 }
 
 FluVirus::~FluVirus()
 {
-
+	DoDie();
 }
 
 FluVirus::FluVirus(const FluVirus & fluVirus) :Virus(fluVirus) {
@@ -38,7 +39,7 @@ void FluVirus::DoBorn() {
 void FluVirus::DoDie()
 {
 	cout << "Killer Flu\n";
-	delete this;
+	m_color = 0;
 }
 
 list<Virus*> FluVirus::DoClone()
@@ -47,8 +48,6 @@ list<Virus*> FluVirus::DoClone()
 	list<Virus*> temp;
 	temp.push_back(a);
 	cout << "\t\t" << left << setw(20) << "Flu virus. " << left << setw(20) << "Resistance:" << this->getM_resistance() << endl;	
-	temp.push_back(a);
-	cout << "\t\t" << left << setw(20) << "Flu virus. " << left << setw(20) << "Resistance:" << this->getM_resistance() << endl;
 	return temp;
 }
 
